@@ -1,468 +1,452 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ms">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Minta SK Cherating</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
+        .page-container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; margin-bottom: 5px; color: #374151; }
+        input, select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+        th { background-color: #f9fafb; }
+        .btn { padding: 10px 20px; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; border: none; }
+        .btn-add { background-color: #10b981; }
+        .btn-pdf { background-color: #ef4444; }
+        .btn-excel { background-color: #22c55e; }
+        .btn-remove { background-color: #ef4444; color: white; padding: 2px 8px; font-size: 12px; }
+        
+        /* Style khas untuk logo di paparan web */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .school-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ms"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Nota Minta SK Cherating&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"&gt;&lt;/script&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.page-container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.input-group { margin-bottom: 15px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>label { display: block; font-weight: 600; margin-bottom: 5px; color: #374151; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>input, select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>table { width: 100%; border-collapse: collapse; margin-top: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th { background-color: #f9fafb; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn { padding: 10px 20px; color: white; border-radius: 4px; cursor: pointer; font-weight: bold; border: none; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-add { background-color: #10b981; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-pdf { background-color: #ef4444; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-excel { background-color: #22c55e; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.btn-remove { background-color: #ef4444; color: white; padding: 2px 8px; font-size: 12px; }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Style khas untuk logo di paparan web */</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.logo-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.school-logo {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 80px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>height: auto;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;div class="page-container"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="logo-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="logo_sekolah.jpg" alt="Logo Sekolah" class="school-logo" id="imgLogo"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 class="text-2xl font-bold text-blue-900 text-center"&gt;NOTA MINTA SK CHERATING&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;No. Rujukan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="bg-gray-200 p-2 border border-r-0 rounded-l"&gt;SKCRTG.300-3/1/1 (&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="refNoInput" class="rounded-l-none rounded-r-none border-l-0 border-r-0 text-center" placeholder="..."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;span class="bg-gray-200 p-2 border border-l-0 rounded-r"&gt;)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Tarikh:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="date" id="dateInput"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Kepada:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;textarea readonly class="bg-gray-100 h-24"&gt;Guru Besar,</p>
-<p class="p1">SK Cherating,</p>
-<p class="p1">26080 Kuantan, Pahang&lt;/textarea&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Daripada (Kategori):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="fromDropdown"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Ketua Panitia Subjek Teras"&gt;Ketua Panitia Subjek Teras&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Subjek Elektif"&gt;Subjek Elektif&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Bimbingan dan Kaunseling"&gt;Bimbingan dan Kaunseling&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mb-6 border-t border-b py-4 bg-gray-50 p-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;label&gt;Tajuk Permohonan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="flex items-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;span&gt;PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="yearDropdown" class="w-32"&gt;&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p class="text-sm text-gray-600 mt-2"&gt;Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan mendapatkan bekalan seperti berikut:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mb-6 overflow-x-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;table id="itemTable"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 5%"&gt;Bil&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 35%"&gt;Perihal Barang&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 10%"&gt;Kuantiti&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 15%"&gt;Harga/Unit (RM)&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 15%"&gt;Jumlah (RM)&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 15%"&gt;Tarikh Diperlukan&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;th style="width: 5%"&gt;Hapus&lt;/th&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/tr&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/thead&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/tbody&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/table&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="addRow()" class="mt-2 btn btn-add text-sm"&gt;+ Tambah Item&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-blue-50 p-4 rounded"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Peruntukan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input list="allocationOptions" id="allocationInput" placeholder="Pilih atau taip sendiri..."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;datalist id="allocationOptions"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="BANTUAN PERKAPITA M/PELAJARAN"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="BANTUAN SUKAN"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="BANTUAN KOKURIKULUM"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="BANTUAN BIMBINGAN KAUNSELING"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/datalist&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Baki Peruntukan Semasa (RM):&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="number" id="balanceInput" step="0.01" placeholder="0.00"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;label&gt;Subsidiari/Mata Pelajaran Semasa:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">             </span>&lt;input type="text" id="subsidiaryInput" placeholder="Contoh: BAHASA INGGERIS"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 border-t pt-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="font-bold border-b mb-2"&gt;Pemohon&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Nama Pemohon:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="applicantName"&gt;&lt;/select&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="mt-2"&gt;Jawatan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;select id="applicantPosition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Ketua Panitia Subjek Teras"&gt;Ketua Panitia Subjek Teras&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Subjek Elektif"&gt;Subjek Elektif&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="Bimbingan dan Kaunseling"&gt;Bimbingan dan Kaunseling&lt;/option&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/select&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="font-bold border-b mb-2"&gt;Kelulusan&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label&gt;Nama:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="text" value="ASRI BIN MOHAMED" readonly class="bg-gray-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="mt-2"&gt;Jawatan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="text" value="Guru Besar" readonly class="bg-gray-100"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;label class="mt-2"&gt;Tarikh Kelulusan:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="date" id="approvalDate"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="flex gap-4 justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="generatePDF()" class="btn btn-pdf flex items-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>Jana PDF</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="generateExcel()" class="btn btn-excel flex items-center gap-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>Jana Excel</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mt-8 text-xs text-gray-500 border-t pt-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Rujukan Dokumen:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;SKCRTG.300-3/1/1 ( ) - Perolehan Alat Tulis dan Bekalan Pejabat&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;SKCRTG.300-3/1/2 ( ) - Perolehan Bahan Mentah (Makanan)&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;SKCRTG.300-2/1/1 ( ) - Perolehan Harta Modal dan Aset Bernilai Rendah&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Data Senarai Nama Guru</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const teachers = [</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"AMIRAH BINTI CHE AZUHA", "AZLAN BIN DAUD", "AZLINA BINTI HANAPI", "AMANI BINTI AWANG QAMARULDEEN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"ANWAR SHAFIQ BIN JAMALUDIN", "ANIS SYAZWANI BINTI MAT ISA", "BAHJATU SHOLIHAH BINTI RAMAN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"FAZILAH BINTI MUDA", "HANIS AYUNI BINTI HADI", "MAKTAR BIN MOHAMED", "MOHD AFIZU BIN ADENAN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"MUHAMAD HAKIMI BIN AMER", "MUHAMMAD SAUFI FIRDAUS BIN SABUDIN", "NURAZIZAH BINTI OMAR",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"NOOR IDAYU BINTI ISMAIL", "NOOR AIN BINTI MOHD YUSOFF", "NOR HUDA DHAMIRAH BINTI ISA",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"NUR IDAYU BINTI ABDULL ROZAK", "NOR NAZAHIYAH BINTI NASARUDIN", "NOR SHAZIRA BINTI AZIZ",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"NOR SYAZALIAH BINTI MAT RADZI", "NURIN IZZAH BINTI ROSMAN", "NUR FATIHATULHUSNA BINTI YA'ACOB",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"NURUL ADILLAH BINTI ZAKARIA", "NURUL IZZATI BINTI MUHAMMAD NAZIR", "NUR ZAKIAH BINTI ZAINUDDIN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"RAJIAH BINTI HAJI MUHAMMAD", "RAMLAH BINTI HASSAN", "RAZIAH BINTI WAHAB",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"RAUDZAH BINTI HAJI KAMALUDIN", "RASHIDAH BINTI ZULKIFLI", "ROSHANIDA BINTI ROHANUDDIN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"SITI ZURAIHA BINTI MAPOL", "SUHAIDA BINTI SIDEK", "SUHAIMI BIN ISMAIL",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"SUZIMARLIANA BINTI IBRAHIM", "SYAIMA' BINTI ABDUL HALIM@BAKAR", "UMMI FARAH BINTI ALIAS",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"WAN SITI NOR ADILAH BINTI WAN OTHMAN", "WAN NOOR UMMI BINTI W.RAMLI", "ZURAYA BINTI OTHMAN",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>"ZIRATUL ASYIKIN BINTI MUSA", "ZAILATUL ROZAIDI BIN ZAKARIA"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.onload = function() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Set Default Date</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('dateInput').valueAsDate = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>document.getElementById('approvalDate').valueAsDate = new Date();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Populate Years (2026 - 2100)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const yearSelect = document.getElementById('yearDropdown');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let y = 2026; y &lt;= 2100; y++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let opt = document.createElement('option');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opt.value = y;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opt.innerHTML = y;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>yearSelect.appendChild(opt);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Populate Names</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const nameSelect = document.getElementById('applicantName');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>teachers.sort().forEach(name =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>let opt = document.createElement('option');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opt.value = name;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>opt.innerHTML = name;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>nameSelect.appendChild(opt);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Add 5 initial rows</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for(let i=0; i&lt;5; i++) addRow();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function addRow() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const rowCount = table.rows.length + 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const row = table.insertRow();</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td class="text-center"&gt;${rowCount}&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" class="desc" placeholder="Nama Barang"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="number" class="qty" oninput="calcRow(this)" placeholder="0"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="number" class="price" oninput="calcRow(this)" step="0.01" placeholder="0.00"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="text" class="total bg-gray-50" readonly placeholder="0.00"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td&gt;&lt;input type="date" class="reqDate"&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;td class="text-center"&gt;&lt;button onclick="removeRow(this)" class="btn-remove"&gt;X&lt;/button&gt;&lt;/td&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function removeRow(btn) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const row = btn.parentNode.parentNode;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.parentNode.removeChild(row);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>renumberRows();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function renumberRows() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; table.rows.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>table.rows[i].cells[0].innerText = i + 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function calcRow(input) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const row = input.parentNode.parentNode;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const qty = parseFloat(row.querySelector('.qty').value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const price = parseFloat(row.querySelector('.price').value) || 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const total = qty * price;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.querySelector('.total').value = total.toFixed(2);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function formatDate(dateStr) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!dateStr) return "";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const parts = dateStr.split('-');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>return `${parts[2]}.${parts[1]}.${parts[0]}`;<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function generatePDF() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const { jsPDF } = window.jspdf;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const doc = new jsPDF();</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- LOGO HANDLING ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Cuba masukkan logo ke dalam PDF</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const imgElement = document.getElementById('imgLogo');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const logoWidth = 25; // lebar dalam mm di PDF</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const logoHeight = 25; // tinggi dalam mm di PDF</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Kira posisi tengah</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const pageWidth = doc.internal.pageSize.getWidth();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const logoX = (pageWidth - logoWidth) / 2;</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Kita lukis imej dulu jika ia berjaya dimuatkan di browser</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (imgElement.complete &amp;&amp; imgElement.naturalHeight !== 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>doc.addImage(imgElement, 'JPEG', logoX, 10, logoWidth, logoHeight);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} catch (e) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>console.log("Logo gagal dimuatkan ke PDF (mungkin isu CORS atau fail tiada). Teruskan tanpa logo.");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Anjakkan teks ke bawah sedikit sebab ada logo</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let startY = 40;<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Data Extraction</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const refNo = `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const date = formatDate(document.getElementById('dateInput').value);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const fromCat = document.getElementById('fromDropdown').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const year = document.getElementById('yearDropdown').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const allocation = document.getElementById('allocationInput').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const balance = document.getElementById('balanceInput').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const subsidiary = document.getElementById('subsidiaryInput').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const applicantName = document.getElementById('applicantName').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const applicantPos = document.getElementById('applicantPosition').value;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const approvalDate = formatDate(document.getElementById('approvalDate').value);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Header Text</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFontSize(14);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "bold");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("NOTA MINTA", 14, startY);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFontSize(10);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "normal");</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`No Ruj: ${refNo}`, 120, startY);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Tarikh: ${date}`, 120, startY + 5);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "bold");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("KEPADA <span class="Apple-converted-space">  </span>: GURU BESAR", 14, startY + 15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "normal");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SK CHERATING, 26080, KUANTAN PAHANG", 35, startY + 20);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "bold");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`DARIPADA : ${fromCat.toUpperCase()}`, 14, startY + 30);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFontSize(11);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "bold");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN ${year}`, 14, startY + 40);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFontSize(10);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "normal");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan", 14, startY + 47);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("mendapatkan bekalan seperti berikut :", 14, startY + 52);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Table</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const tableRows = [];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const tbody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; tbody.rows.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const row = tbody.rows[i];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>tableRows.push([</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.cells[0].innerText,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.desc').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.qty').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.price').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.total').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>formatDate(row.querySelector('.reqDate').value),</p>
-<p class="p1"><span class="Apple-converted-space">                </span>''</p>
-<p class="p1"><span class="Apple-converted-space">            </span>]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.autoTable({</p>
-<p class="p1"><span class="Apple-converted-space">            </span>startY: startY + 55,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>head: [['BIL', 'PERIHAL BARANG', 'KUANTITI', 'HARGA / UNIT', 'ANGGARAN HARGA', 'TARIKH DIPERLUKAN', 'CATATAN OLEH GURU BESAR']],</p>
-<p class="p1"><span class="Apple-converted-space">            </span>body: tableRows,</p>
-<p class="p1"><span class="Apple-converted-space">            </span>theme: 'grid',</p>
-<p class="p1"><span class="Apple-converted-space">            </span>styles: { fontSize: 8, cellPadding: 2 },</p>
-<p class="p1"><span class="Apple-converted-space">            </span>headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let finalY = doc.lastAutoTable.finalY + 10;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Footer</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Peruntukan: ${allocation}`, 14, finalY);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Subsidiari/Mata Pelajaran Semasa: ${subsidiary}`, 14, finalY + 5);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Baki Peruntukan Semasa: RM ${balance}`, 14, finalY + 10);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Sekian, terima kasih.", 14, finalY + 20);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Permohonan di atas", 130, finalY + 20);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Diluluskan / Tidak diluluskan", 130, finalY + 25);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Yang Benar,", 14, finalY + 30);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const signY = finalY + 50;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.line(14, signY, 80, signY);<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.line(130, signY, 190, signY);<span class="Apple-converted-space"> </span></p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "bold");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(applicantName, 14, signY + 5);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("ASRI BIN MOHAMED", 130, signY + 5);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFont("helvetica", "normal");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(applicantPos, 14, signY + 10);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("Guru Besar", 130, signY + 10);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SK Cherating", 14, signY + 15);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SK Cherating", 130, signY + 15);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Tarikh: ${date}`, 14, signY + 20);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text(`Tarikh: ${approvalDate}`, 130, signY + 20);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const refY = signY + 30;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.setFontSize(8);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("*No Ruj Nota Minta:", 14, refY);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SKCRTG.300-3/1/1 (<span class="Apple-converted-space">        </span>) - Perolehan Alat Tulis dan Bekalan Pejabat", 14, refY + 5);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SKCRTG.300-3/1/2 (<span class="Apple-converted-space">        </span>) - Perolehan Bahan Mentah (Makanan)", 14, refY + 10);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.text("SKCRTG.300-2/1/1 (<span class="Apple-converted-space">        </span>) - Perolehan Harta Modal dan Aset Bernilai Rendah", 14, refY + 15);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>doc.save(`Nota_Minta_${document.getElementById('refNoInput').value}.pdf`);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function generateExcel() {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const wb = XLSX.utils.book_new();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ws_data = [];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["NOTA MINTA SK CHERATING"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["", "", "No Ruj:", `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["", "", "Tarikh:", formatDate(document.getElementById('dateInput').value)]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["KEPADA", ": GURU BESAR"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["", "SK CHERATING, 26080, KUANTAN PAHANG"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["DARIPADA", ": " + document.getElementById('fromDropdown').value]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN " + document.getElementById('yearDropdown').value]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["mendapatkan bekalan seperti berikut :"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["BIL", "PERIHAL BARANG", "KUANTITI", "HARGA / UNIT", "ANGGARAN HARGA", "TARIKH DIPERLUKAN", "CATATAN OLEH GURU BESAR"]);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const tbody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (let i = 0; i &lt; tbody.rows.length; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const row = tbody.rows[i];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ws_data.push([</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.cells[0].innerText,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.desc').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.qty').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.price').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>row.querySelector('.total').value,</p>
-<p class="p1"><span class="Apple-converted-space">                </span>formatDate(row.querySelector('.reqDate').value),</p>
-<p class="p1"><span class="Apple-converted-space">                </span>""</p>
-<p class="p1"><span class="Apple-converted-space">            </span>]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Peruntukan:", document.getElementById('allocationInput').value]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Subsidiari/Mata Pelajaran Semasa:", document.getElementById('subsidiaryInput').value]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Baki Peruntukan Semasa : RM", document.getElementById('balanceInput').value]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Sekian, terima kasih.", "", "Permohonan di atas"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["", "", "Diluluskan / Tidak diluluskan"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Yang Benar,"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([document.getElementById('applicantName').value, "", "ASRI BIN MOHAMED"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push([document.getElementById('applicantPosition').value, "", "Guru Besar"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["SK Cherating", "", "SK Cherating"]);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ws_data.push(["Tarikh: " + formatDate(document.getElementById('dateInput').value), "", "Tarikh : " + formatDate(document.getElementById('approvalDate').value)]);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ws = XLSX.utils.aoa_to_sheet(ws_data);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>XLSX.utils.book_append_sheet(wb, ws, "Nota Minta");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>XLSX.writeFile(wb, "Nota_Minta_SKC.xlsx");</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+<div class="page-container">
+    
+    <div class="logo-container">
+        <img src="logo_sekolah.jpg" alt="Logo Sekolah" class="school-logo" id="imgLogo">
+        <h1 class="text-2xl font-bold text-blue-900 text-center">NOTA MINTA SK CHERATING</h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+            <label>No. Rujukan:</label>
+            <div class="flex items-center">
+                <span class="bg-gray-200 p-2 border border-r-0 rounded-l">SKCRTG.300-3/1/1 (</span>
+                <input type="text" id="refNoInput" class="rounded-l-none rounded-r-none border-l-0 border-r-0 text-center" placeholder="...">
+                <span class="bg-gray-200 p-2 border border-l-0 rounded-r">)</span>
+            </div>
+        </div>
+        <div>
+            <label>Tarikh:</label>
+            <input type="date" id="dateInput">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+            <label>Kepada:</label>
+            <textarea readonly class="bg-gray-100 h-24">Guru Besar,
+SK Cherating,
+26080 Kuantan, Pahang</textarea>
+        </div>
+        <div>
+            <label>Daripada (Kategori):</label>
+            <select id="fromDropdown">
+                <option value="Ketua Panitia Subjek Teras">Ketua Panitia Subjek Teras</option>
+                <option value="Subjek Elektif">Subjek Elektif</option>
+                <option value="Bimbingan dan Kaunseling">Bimbingan dan Kaunseling</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-6 border-t border-b py-4 bg-gray-50 p-4">
+        <label>Tajuk Permohonan:</label>
+        <div class="flex items-center gap-2">
+            <span>PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN</span>
+            <select id="yearDropdown" class="w-32"></select>
+        </div>
+        <p class="text-sm text-gray-600 mt-2">Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan mendapatkan bekalan seperti berikut:</p>
+    </div>
+
+    <div class="mb-6 overflow-x-auto">
+        <table id="itemTable">
+            <thead>
+                <tr>
+                    <th style="width: 5%">Bil</th>
+                    <th style="width: 35%">Perihal Barang</th>
+                    <th style="width: 10%">Kuantiti</th>
+                    <th style="width: 15%">Harga/Unit (RM)</th>
+                    <th style="width: 15%">Jumlah (RM)</th>
+                    <th style="width: 15%">Tarikh Diperlukan</th>
+                    <th style="width: 5%">Hapus</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+        <button onclick="addRow()" class="mt-2 btn btn-add text-sm">+ Tambah Item</button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-blue-50 p-4 rounded">
+        <div>
+            <label>Peruntukan:</label>
+            <input list="allocationOptions" id="allocationInput" placeholder="Pilih atau taip sendiri...">
+            <datalist id="allocationOptions">
+                <option value="BANTUAN PERKAPITA M/PELAJARAN">
+                <option value="BANTUAN SUKAN">
+                <option value="BANTUAN KOKURIKULUM">
+                <option value="BANTUAN BIMBINGAN KAUNSELING">
+            </datalist>
+        </div>
+        <div>
+            <label>Baki Peruntukan Semasa (RM):</label>
+            <input type="number" id="balanceInput" step="0.01" placeholder="0.00">
+        </div>
+        <div>
+             <label>Subsidiari/Mata Pelajaran Semasa:</label>
+             <input type="text" id="subsidiaryInput" placeholder="Contoh: BAHASA INGGERIS">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 border-t pt-4">
+        <div>
+            <h3 class="font-bold border-b mb-2">Pemohon</h3>
+            <label>Nama Pemohon:</label>
+            <select id="applicantName"></select>
+            
+            <label class="mt-2">Jawatan:</label>
+            <select id="applicantPosition">
+                <option value="Ketua Panitia Subjek Teras">Ketua Panitia Subjek Teras</option>
+                <option value="Subjek Elektif">Subjek Elektif</option>
+                <option value="Bimbingan dan Kaunseling">Bimbingan dan Kaunseling</option>
+            </select>
+        </div>
+        <div>
+            <h3 class="font-bold border-b mb-2">Kelulusan</h3>
+            <label>Nama:</label>
+            <input type="text" value="ASRI BIN MOHAMED" readonly class="bg-gray-100">
+            <label class="mt-2">Jawatan:</label>
+            <input type="text" value="Guru Besar" readonly class="bg-gray-100">
+            <label class="mt-2">Tarikh Kelulusan:</label>
+            <input type="date" id="approvalDate">
+        </div>
+    </div>
+
+    <div class="flex gap-4 justify-center">
+        <button onclick="generatePDF()" class="btn btn-pdf flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            Jana PDF
+        </button>
+        <button onclick="generateExcel()" class="btn btn-excel flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            Jana Excel
+        </button>
+    </div>
+    
+    <div class="mt-8 text-xs text-gray-500 border-t pt-2">
+        <p>Rujukan Dokumen:</p>
+        <p>SKCRTG.300-3/1/1 ( ) - Perolehan Alat Tulis dan Bekalan Pejabat</p>
+        <p>SKCRTG.300-3/1/2 ( ) - Perolehan Bahan Mentah (Makanan)</p>
+        <p>SKCRTG.300-2/1/1 ( ) - Perolehan Harta Modal dan Aset Bernilai Rendah</p>
+    </div>
+
+</div>
+
+<script>
+    // Data Senarai Nama Guru
+    const teachers = [
+        "AMIRAH BINTI CHE AZUHA", "AZLAN BIN DAUD", "AZLINA BINTI HANAPI", "AMANI BINTI AWANG QAMARULDEEN",
+        "ANWAR SHAFIQ BIN JAMALUDIN", "ANIS SYAZWANI BINTI MAT ISA", "BAHJATU SHOLIHAH BINTI RAMAN",
+        "FAZILAH BINTI MUDA", "HANIS AYUNI BINTI HADI", "MAKTAR BIN MOHAMED", "MOHD AFIZU BIN ADENAN",
+        "MUHAMAD HAKIMI BIN AMER", "MUHAMMAD SAUFI FIRDAUS BIN SABUDIN", "NURAZIZAH BINTI OMAR",
+        "NOOR IDAYU BINTI ISMAIL", "NOOR AIN BINTI MOHD YUSOFF", "NOR HUDA DHAMIRAH BINTI ISA",
+        "NUR IDAYU BINTI ABDULL ROZAK", "NOR NAZAHIYAH BINTI NASARUDIN", "NOR SHAZIRA BINTI AZIZ",
+        "NOR SYAZALIAH BINTI MAT RADZI", "NURIN IZZAH BINTI ROSMAN", "NUR FATIHATULHUSNA BINTI YA'ACOB",
+        "NURUL ADILLAH BINTI ZAKARIA", "NURUL IZZATI BINTI MUHAMMAD NAZIR", "NUR ZAKIAH BINTI ZAINUDDIN",
+        "RAJIAH BINTI HAJI MUHAMMAD", "RAMLAH BINTI HASSAN", "RAZIAH BINTI WAHAB",
+        "RAUDZAH BINTI HAJI KAMALUDIN", "RASHIDAH BINTI ZULKIFLI", "ROSHANIDA BINTI ROHANUDDIN",
+        "SITI ZURAIHA BINTI MAPOL", "SUHAIDA BINTI SIDEK", "SUHAIMI BIN ISMAIL",
+        "SUZIMARLIANA BINTI IBRAHIM", "SYAIMA' BINTI ABDUL HALIM@BAKAR", "UMMI FARAH BINTI ALIAS",
+        "WAN SITI NOR ADILAH BINTI WAN OTHMAN", "WAN NOOR UMMI BINTI W.RAMLI", "ZURAYA BINTI OTHMAN",
+        "ZIRATUL ASYIKIN BINTI MUSA", "ZAILATUL ROZAIDI BIN ZAKARIA"
+    ];
+
+    window.onload = function() {
+        // Set Default Date
+        document.getElementById('dateInput').valueAsDate = new Date();
+        document.getElementById('approvalDate').valueAsDate = new Date();
+
+        // Populate Years (2026 - 2100)
+        const yearSelect = document.getElementById('yearDropdown');
+        for (let y = 2026; y <= 2100; y++) {
+            let opt = document.createElement('option');
+            opt.value = y;
+            opt.innerHTML = y;
+            yearSelect.appendChild(opt);
+        }
+
+        // Populate Names
+        const nameSelect = document.getElementById('applicantName');
+        teachers.sort().forEach(name => {
+            let opt = document.createElement('option');
+            opt.value = name;
+            opt.innerHTML = name;
+            nameSelect.appendChild(opt);
+        });
+
+        // Add 5 initial rows
+        for(let i=0; i<5; i++) addRow();
+    };
+
+    function addRow() {
+        const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        const rowCount = table.rows.length + 1;
+        const row = table.insertRow();
+        
+        row.innerHTML = `
+            <td class="text-center">${rowCount}</td>
+            <td><input type="text" class="desc" placeholder="Nama Barang"></td>
+            <td><input type="number" class="qty" oninput="calcRow(this)" placeholder="0"></td>
+            <td><input type="number" class="price" oninput="calcRow(this)" step="0.01" placeholder="0.00"></td>
+            <td><input type="text" class="total bg-gray-50" readonly placeholder="0.00"></td>
+            <td><input type="date" class="reqDate"></td>
+            <td class="text-center"><button onclick="removeRow(this)" class="btn-remove">X</button></td>
+        `;
+    }
+
+    function removeRow(btn) {
+        const row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        renumberRows();
+    }
+
+    function renumberRows() {
+        const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        for (let i = 0; i < table.rows.length; i++) {
+            table.rows[i].cells[0].innerText = i + 1;
+        }
+    }
+
+    function calcRow(input) {
+        const row = input.parentNode.parentNode;
+        const qty = parseFloat(row.querySelector('.qty').value) || 0;
+        const price = parseFloat(row.querySelector('.price').value) || 0;
+        const total = qty * price;
+        row.querySelector('.total').value = total.toFixed(2);
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return "";
+        const parts = dateStr.split('-');
+        return `${parts[2]}.${parts[1]}.${parts[0]}`; 
+    }
+
+    async function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // --- LOGO HANDLING ---
+        // Cuba masukkan logo ke dalam PDF
+        const imgElement = document.getElementById('imgLogo');
+        const logoWidth = 25; // lebar dalam mm di PDF
+        const logoHeight = 25; // tinggi dalam mm di PDF
+        
+        // Kira posisi tengah
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const logoX = (pageWidth - logoWidth) / 2;
+        
+        try {
+            // Kita lukis imej dulu jika ia berjaya dimuatkan di browser
+            if (imgElement.complete && imgElement.naturalHeight !== 0) {
+                 doc.addImage(imgElement, 'JPEG', logoX, 10, logoWidth, logoHeight);
+            }
+        } catch (e) {
+            console.log("Logo gagal dimuatkan ke PDF (mungkin isu CORS atau fail tiada). Teruskan tanpa logo.");
+        }
+
+        // Anjakkan teks ke bawah sedikit sebab ada logo
+        let startY = 40; 
+
+        // Data Extraction
+        const refNo = `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`;
+        const date = formatDate(document.getElementById('dateInput').value);
+        const fromCat = document.getElementById('fromDropdown').value;
+        const year = document.getElementById('yearDropdown').value;
+        const allocation = document.getElementById('allocationInput').value;
+        const balance = document.getElementById('balanceInput').value;
+        const subsidiary = document.getElementById('subsidiaryInput').value;
+        const applicantName = document.getElementById('applicantName').value;
+        const applicantPos = document.getElementById('applicantPosition').value;
+        const approvalDate = formatDate(document.getElementById('approvalDate').value);
+
+        // Header Text
+        doc.setFontSize(14);
+        doc.setFont("helvetica", "bold");
+        doc.text("NOTA MINTA", 14, startY);
+        
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+        
+        doc.text(`No Ruj: ${refNo}`, 120, startY);
+        doc.text(`Tarikh: ${date}`, 120, startY + 5);
+
+        doc.setFont("helvetica", "bold");
+        doc.text("KEPADA   : GURU BESAR", 14, startY + 15);
+        doc.setFont("helvetica", "normal");
+        doc.text("SK CHERATING, 26080, KUANTAN PAHANG", 35, startY + 20);
+        
+        doc.setFont("helvetica", "bold");
+        doc.text(`DARIPADA : ${fromCat.toUpperCase()}`, 14, startY + 30);
+
+        doc.setFontSize(11);
+        doc.setFont("helvetica", "bold");
+        doc.text(`PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN ${year}`, 14, startY + 40);
+        
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+        doc.text("Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan", 14, startY + 47);
+        doc.text("mendapatkan bekalan seperti berikut :", 14, startY + 52);
+
+        // Table
+        const tableRows = [];
+        const tbody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        for (let i = 0; i < tbody.rows.length; i++) {
+            const row = tbody.rows[i];
+            tableRows.push([
+                row.cells[0].innerText,
+                row.querySelector('.desc').value,
+                row.querySelector('.qty').value,
+                row.querySelector('.price').value,
+                row.querySelector('.total').value,
+                formatDate(row.querySelector('.reqDate').value),
+                ''
+            ]);
+        }
+
+        doc.autoTable({
+            startY: startY + 55,
+            head: [['BIL', 'PERIHAL BARANG', 'KUANTITI', 'HARGA / UNIT', 'ANGGARAN HARGA', 'TARIKH DIPERLUKAN', 'CATATAN OLEH GURU BESAR']],
+            body: tableRows,
+            theme: 'grid',
+            styles: { fontSize: 8, cellPadding: 2 },
+            headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' }
+        });
+
+        let finalY = doc.lastAutoTable.finalY + 10;
+
+        // Footer
+        doc.text(`Peruntukan: ${allocation}`, 14, finalY);
+        doc.text(`Subsidiari/Mata Pelajaran Semasa: ${subsidiary}`, 14, finalY + 5);
+        doc.text(`Baki Peruntukan Semasa: RM ${balance}`, 14, finalY + 10);
+
+        doc.text("Sekian, terima kasih.", 14, finalY + 20);
+        doc.text("Permohonan di atas", 130, finalY + 20);
+        doc.text("Diluluskan / Tidak diluluskan", 130, finalY + 25);
+
+        doc.text("Yang Benar,", 14, finalY + 30);
+
+        const signY = finalY + 50;
+        doc.line(14, signY, 80, signY); 
+        doc.line(130, signY, 190, signY); 
+
+        doc.setFont("helvetica", "bold");
+        doc.text(applicantName, 14, signY + 5);
+        doc.text("ASRI BIN MOHAMED", 130, signY + 5);
+        
+        doc.setFont("helvetica", "normal");
+        doc.text(applicantPos, 14, signY + 10);
+        doc.text("Guru Besar", 130, signY + 10);
+        
+        doc.text("SK Cherating", 14, signY + 15);
+        doc.text("SK Cherating", 130, signY + 15);
+        
+        doc.text(`Tarikh: ${date}`, 14, signY + 20);
+        doc.text(`Tarikh: ${approvalDate}`, 130, signY + 20);
+
+        const refY = signY + 30;
+        doc.setFontSize(8);
+        doc.text("*No Ruj Nota Minta:", 14, refY);
+        doc.text("SKCRTG.300-3/1/1 (        ) - Perolehan Alat Tulis dan Bekalan Pejabat", 14, refY + 5);
+        doc.text("SKCRTG.300-3/1/2 (        ) - Perolehan Bahan Mentah (Makanan)", 14, refY + 10);
+        doc.text("SKCRTG.300-2/1/1 (        ) - Perolehan Harta Modal dan Aset Bernilai Rendah", 14, refY + 15);
+
+        doc.save(`Nota_Minta_${document.getElementById('refNoInput').value}.pdf`);
+    }
+
+    function generateExcel() {
+        const wb = XLSX.utils.book_new();
+        const ws_data = [];
+
+        ws_data.push(["NOTA MINTA SK CHERATING"]);
+        ws_data.push(["", "", "No Ruj:", `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`]);
+        ws_data.push(["", "", "Tarikh:", formatDate(document.getElementById('dateInput').value)]);
+        ws_data.push(["KEPADA", ": GURU BESAR"]);
+        ws_data.push(["", "SK CHERATING, 26080, KUANTAN PAHANG"]);
+        ws_data.push([]);
+        ws_data.push(["DARIPADA", ": " + document.getElementById('fromDropdown').value]);
+        ws_data.push([]);
+        ws_data.push(["PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN " + document.getElementById('yearDropdown').value]);
+        ws_data.push([]);
+        ws_data.push(["Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan"]);
+        ws_data.push(["mendapatkan bekalan seperti berikut :"]);
+        ws_data.push([]);
+        
+        ws_data.push(["BIL", "PERIHAL BARANG", "KUANTITI", "HARGA / UNIT", "ANGGARAN HARGA", "TARIKH DIPERLUKAN", "CATATAN OLEH GURU BESAR"]);
+
+        const tbody = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
+        for (let i = 0; i < tbody.rows.length; i++) {
+            const row = tbody.rows[i];
+            ws_data.push([
+                row.cells[0].innerText,
+                row.querySelector('.desc').value,
+                row.querySelector('.qty').value,
+                row.querySelector('.price').value,
+                row.querySelector('.total').value,
+                formatDate(row.querySelector('.reqDate').value),
+                ""
+            ]);
+        }
+
+        ws_data.push([]);
+        ws_data.push(["Peruntukan:", document.getElementById('allocationInput').value]);
+        ws_data.push(["Subsidiari/Mata Pelajaran Semasa:", document.getElementById('subsidiaryInput').value]);
+        ws_data.push(["Baki Peruntukan Semasa : RM", document.getElementById('balanceInput').value]);
+        ws_data.push([]);
+        ws_data.push(["Sekian, terima kasih.", "", "Permohonan di atas"]);
+        ws_data.push(["", "", "Diluluskan / Tidak diluluskan"]);
+        ws_data.push(["Yang Benar,"]);
+        ws_data.push([]);
+        ws_data.push([document.getElementById('applicantName').value, "", "ASRI BIN MOHAMED"]);
+        ws_data.push([document.getElementById('applicantPosition').value, "", "Guru Besar"]);
+        ws_data.push(["SK Cherating", "", "SK Cherating"]);
+        ws_data.push(["Tarikh: " + formatDate(document.getElementById('dateInput').value), "", "Tarikh : " + formatDate(document.getElementById('approvalDate').value)]);
+
+        const ws = XLSX.utils.aoa_to_sheet(ws_data);
+        XLSX.utils.book_append_sheet(wb, ws, "Nota Minta");
+        XLSX.writeFile(wb, "Nota_Minta_SKC.xlsx");
+    }
+</script>
+
 </body>
 </html>
