@@ -12,7 +12,6 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f3f4f6; }
         .page-container { max-width: 900px; margin: 20px auto; background: white; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px; }
-        .input-group { margin-bottom: 15px; }
         label { display: block; font-weight: 600; margin-bottom: 5px; color: #374151; }
         input, select { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 4px; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -24,7 +23,6 @@
         .btn-excel { background-color: #22c55e; }
         .btn-remove { background-color: #ef4444; color: white; padding: 2px 8px; font-size: 12px; }
         
-        /* Style khas untuk logo di paparan web */
         .logo-container {
             display: flex;
             justify-content: center;
@@ -37,6 +35,10 @@
             height: auto;
             margin-bottom: 10px;
         }
+        .grand-total-row {
+            background-color: #e5e7eb;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -44,8 +46,8 @@
 <div class="page-container">
     
     <div class="logo-container">
-        <img src="logo_sekolah.jpg" alt="Logo Sekolah" class="school-logo" id="imgLogo">
-        <h1 class="text-2xl font-bold text-blue-900 text-center">NOTA MINTA SK CHERATING</h1>
+        <img src="logo_sekolah.jpg" alt="Logo Sekolah" class="school-logo" id="imgLogo" onerror="this.style.display='none'">
+        <h1 class="text-2xl font-bold text-blue-900 text-center uppercase">Nota Minta SK Cherating</h1>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -53,9 +55,10 @@
             <label>No. Rujukan:</label>
             <div class="flex items-center">
                 <span class="bg-gray-200 p-2 border border-r-0 rounded-l">SKCRTG.300-3/1/1 (</span>
-                <input type="text" id="refNoInput" class="rounded-l-none rounded-r-none border-l-0 border-r-0 text-center" placeholder="...">
+                <input type="text" id="refNoInput" class="rounded-l-none rounded-r-none border-l-0 border-r-0 text-center w-16" placeholder="   ">
                 <span class="bg-gray-200 p-2 border border-l-0 rounded-r">)</span>
             </div>
+            <p class="text-xs text-gray-500 mt-1">*Biarkan kosong untuk tulis manual nanti.</p>
         </div>
         <div>
             <label>Tarikh:</label>
@@ -66,25 +69,43 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
             <label>Kepada:</label>
-            <textarea readonly class="bg-gray-100 h-24">Guru Besar,
+            <textarea readonly class="bg-gray-100 h-24 w-full p-2 border rounded">Guru Besar,
 SK Cherating,
 26080 Kuantan, Pahang</textarea>
         </div>
         <div>
-            <label>Daripada (Kategori):</label>
+            <label>Daripada (Panitia / Unit):</label>
             <select id="fromDropdown">
-                <option value="Ketua Panitia Subjek Teras">Ketua Panitia Subjek Teras</option>
-                <option value="Subjek Elektif">Subjek Elektif</option>
-                <option value="Bimbingan dan Kaunseling">Bimbingan dan Kaunseling</option>
+                <optgroup label="Teras">
+                    <option value="Ketua Panitia Bahasa Melayu">Ketua Panitia Bahasa Melayu</option>
+                    <option value="Ketua Panitia Bahasa Inggeris">Ketua Panitia Bahasa Inggeris</option>
+                    <option value="Ketua Panitia Matematik">Ketua Panitia Matematik</option>
+                    <option value="Ketua Panitia Sains">Ketua Panitia Sains</option>
+                    <option value="Ketua Panitia Pendidikan Islam">Ketua Panitia Pendidikan Islam</option>
+                    <option value="Ketua Panitia Bahasa Arab">Ketua Panitia Bahasa Arab</option>
+                    <option value="Ketua Panitia Sejarah">Ketua Panitia Sejarah</option>
+                </optgroup>
+                <optgroup label="Elektif / Wajib">
+                    <option value="Ketua Panitia Pendidikan Jasmani & Kesihatan">Ketua Panitia Pendidikan Jasmani & Kesihatan</option>
+                    <option value="Ketua Panitia Pendidikan Seni Visual">Ketua Panitia Pendidikan Seni Visual</option>
+                    <option value="Ketua Panitia Pendidikan Muzik">Ketua Panitia Pendidikan Muzik</option>
+                    <option value="Ketua Panitia Reka Bentuk & Teknologi">Ketua Panitia Reka Bentuk & Teknologi</option>
+                </optgroup>
+                <optgroup label="Unit Lain">
+                    <option value="Bimbingan dan Kaunseling">Bimbingan dan Kaunseling</option>
+                    <option value="Prasekolah">Prasekolah</option>
+                    <option value="Pemulihan Khas">Pemulihan Khas</option>
+                    <option value="Pusat Sumber Sekolah">Pusat Sumber Sekolah</option>
+                </optgroup>
             </select>
         </div>
     </div>
 
-    <div class="mb-6 border-t border-b py-4 bg-gray-50 p-4">
+    <div class="mb-6 border-t border-b py-4 bg-gray-50 p-4 rounded">
         <label>Tajuk Permohonan:</label>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
             <span>PERMOHONAN MENDAPATKAN BEKALAN PERALATAN BAGI TAHUN</span>
-            <select id="yearDropdown" class="w-32"></select>
+            <select id="yearDropdown" class="w-32 bg-white"></select>
         </div>
         <p class="text-sm text-gray-600 mt-2">Berhubung dengan perkara di atas, diharap dapat tuan meluluskan permohonan mendapatkan bekalan seperti berikut:</p>
     </div>
@@ -104,19 +125,27 @@ SK Cherating,
             </thead>
             <tbody>
                 </tbody>
+            <tfoot>
+                <tr class="grand-total-row">
+                    <td colspan="4" class="text-right pr-4">JUMLAH KESELURUHAN (RM):</td>
+                    <td><input type="text" id="grandTotal" class="font-bold bg-transparent border-none" readonly value="0.00"></td>
+                    <td colspan="2"></td>
+                </tr>
+            </tfoot>
         </table>
         <button onclick="addRow()" class="mt-2 btn btn-add text-sm">+ Tambah Item</button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-blue-50 p-4 rounded">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 bg-blue-50 p-4 rounded border border-blue-100">
         <div>
             <label>Peruntukan:</label>
-            <input list="allocationOptions" id="allocationInput" placeholder="Pilih atau taip sendiri...">
+            <input list="allocationOptions" id="allocationInput" placeholder="Pilih atau taip...">
             <datalist id="allocationOptions">
                 <option value="BANTUAN PERKAPITA M/PELAJARAN">
                 <option value="BANTUAN SUKAN">
                 <option value="BANTUAN KOKURIKULUM">
                 <option value="BANTUAN BIMBINGAN KAUNSELING">
+                <option value="BANTUAN PUSAT SUMBER">
             </datalist>
         </div>
         <div>
@@ -125,50 +154,49 @@ SK Cherating,
         </div>
         <div>
              <label>Subsidiari/Mata Pelajaran Semasa:</label>
-             <input type="text" id="subsidiaryInput" placeholder="Contoh: BAHASA INGGERIS">
+             <input type="text" id="subsidiaryInput" placeholder="Contoh: BAHASA MELAYU">
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 border-t pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 border-t pt-6">
         <div>
-            <h3 class="font-bold border-b mb-2">Pemohon</h3>
+            <h3 class="font-bold border-b mb-4 pb-2 text-lg">Pemohon</h3>
             <label>Nama Pemohon:</label>
-            <select id="applicantName"></select>
+            <select id="applicantName" class="mb-3"></select>
             
-            <label class="mt-2">Jawatan:</label>
+            <label>Jawatan:</label>
             <select id="applicantPosition">
-                <option value="Ketua Panitia Subjek Teras">Ketua Panitia Subjek Teras</option>
-                <option value="Subjek Elektif">Subjek Elektif</option>
-                <option value="Bimbingan dan Kaunseling">Bimbingan dan Kaunseling</option>
-            </select>
+                </select>
         </div>
         <div>
-            <h3 class="font-bold border-b mb-2">Kelulusan</h3>
+            <h3 class="font-bold border-b mb-4 pb-2 text-lg">Kelulusan</h3>
             <label>Nama:</label>
-            <input type="text" value="ASRI BIN MOHAMED" readonly class="bg-gray-100">
-            <label class="mt-2">Jawatan:</label>
-            <input type="text" value="Guru Besar" readonly class="bg-gray-100">
-            <label class="mt-2">Tarikh Kelulusan:</label>
+            <input type="text" value="ASRI BIN MOHAMED" readonly class="bg-gray-100 mb-3 font-semibold">
+            <label>Jawatan:</label>
+            <input type="text" value="Guru Besar" readonly class="bg-gray-100 mb-3">
+            <label>Tarikh Kelulusan:</label>
             <input type="date" id="approvalDate">
         </div>
     </div>
 
-    <div class="flex gap-4 justify-center">
-        <button onclick="generatePDF()" class="btn btn-pdf flex items-center gap-2">
+    <div class="flex gap-4 justify-center print:hidden">
+        <button onclick="generatePDF()" class="btn btn-pdf flex items-center gap-2 hover:bg-red-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
             Jana PDF
         </button>
-        <button onclick="generateExcel()" class="btn btn-excel flex items-center gap-2">
+        <button onclick="generateExcel()" class="btn btn-excel flex items-center gap-2 hover:bg-green-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
             Jana Excel
         </button>
     </div>
     
-    <div class="mt-8 text-xs text-gray-500 border-t pt-2">
-        <p>Rujukan Dokumen:</p>
-        <p>SKCRTG.300-3/1/1 ( ) - Perolehan Alat Tulis dan Bekalan Pejabat</p>
-        <p>SKCRTG.300-3/1/2 ( ) - Perolehan Bahan Mentah (Makanan)</p>
-        <p>SKCRTG.300-2/1/1 ( ) - Perolehan Harta Modal dan Aset Bernilai Rendah</p>
+    <div class="mt-8 text-xs text-gray-500 border-t pt-4">
+        <p class="font-semibold mb-1">Kod Rujukan Dokumen:</p>
+        <ul class="list-none space-y-1">
+            <li>SKCRTG.300-3/1/1 ( ... ) - Perolehan Alat Tulis dan Bekalan Pejabat</li>
+            <li>SKCRTG.300-3/1/2 ( ... ) - Perolehan Bahan Mentah (Makanan)</li>
+            <li>SKCRTG.300-2/1/1 ( ... ) - Perolehan Harta Modal dan Aset Bernilai Rendah</li>
+        </ul>
     </div>
 
 </div>
@@ -193,11 +221,10 @@ SK Cherating,
     ];
 
     window.onload = function() {
-        // Set Default Date
         document.getElementById('dateInput').valueAsDate = new Date();
         document.getElementById('approvalDate').valueAsDate = new Date();
 
-        // Populate Years (2026 - 2100)
+        // Populate Years
         const yearSelect = document.getElementById('yearDropdown');
         for (let y = 2026; y <= 2100; y++) {
             let opt = document.createElement('option');
@@ -215,30 +242,40 @@ SK Cherating,
             nameSelect.appendChild(opt);
         });
 
-        // Add 5 initial rows
+        // Copy options from 'From' dropdown to 'Position' dropdown
+        const fromDropdown = document.getElementById('fromDropdown');
+        const posDropdown = document.getElementById('applicantPosition');
+        posDropdown.innerHTML = fromDropdown.innerHTML;
+
+        // Sync logic: When 'Daripada' changes, suggest changing 'Position' (optional but helpful)
+        fromDropdown.addEventListener('change', function() {
+             posDropdown.value = this.value;
+        });
+
         for(let i=0; i<5; i++) addRow();
     };
 
     function addRow() {
         const table = document.getElementById('itemTable').getElementsByTagName('tbody')[0];
-        const rowCount = table.rows.length + 1;
         const row = table.insertRow();
         
         row.innerHTML = `
-            <td class="text-center">${rowCount}</td>
+            <td class="text-center bg-gray-50"></td>
             <td><input type="text" class="desc" placeholder="Nama Barang"></td>
             <td><input type="number" class="qty" oninput="calcRow(this)" placeholder="0"></td>
             <td><input type="number" class="price" oninput="calcRow(this)" step="0.01" placeholder="0.00"></td>
-            <td><input type="text" class="total bg-gray-50" readonly placeholder="0.00"></td>
+            <td><input type="text" class="total bg-gray-50 font-semibold" readonly value="0.00"></td>
             <td><input type="date" class="reqDate"></td>
             <td class="text-center"><button onclick="removeRow(this)" class="btn-remove">X</button></td>
         `;
+        renumberRows();
     }
 
     function removeRow(btn) {
         const row = btn.parentNode.parentNode;
         row.parentNode.removeChild(row);
         renumberRows();
+        calcGrandTotal();
     }
 
     function renumberRows() {
@@ -254,6 +291,16 @@ SK Cherating,
         const price = parseFloat(row.querySelector('.price').value) || 0;
         const total = qty * price;
         row.querySelector('.total').value = total.toFixed(2);
+        calcGrandTotal();
+    }
+
+    function calcGrandTotal() {
+        let total = 0;
+        const totals = document.querySelectorAll('.total');
+        totals.forEach(input => {
+            total += parseFloat(input.value) || 0;
+        });
+        document.getElementById('grandTotal').value = total.toFixed(2);
     }
 
     function formatDate(dateStr) {
@@ -267,29 +314,28 @@ SK Cherating,
         const doc = new jsPDF();
         
         // --- LOGO HANDLING ---
-        // Cuba masukkan logo ke dalam PDF
         const imgElement = document.getElementById('imgLogo');
-        const logoWidth = 25; // lebar dalam mm di PDF
-        const logoHeight = 25; // tinggi dalam mm di PDF
-        
-        // Kira posisi tengah
+        const logoWidth = 25; 
+        const logoHeight = 25; 
         const pageWidth = doc.internal.pageSize.getWidth();
         const logoX = (pageWidth - logoWidth) / 2;
         
         try {
-            // Kita lukis imej dulu jika ia berjaya dimuatkan di browser
             if (imgElement.complete && imgElement.naturalHeight !== 0) {
                  doc.addImage(imgElement, 'JPEG', logoX, 10, logoWidth, logoHeight);
             }
         } catch (e) {
-            console.log("Logo gagal dimuatkan ke PDF (mungkin isu CORS atau fail tiada). Teruskan tanpa logo.");
+            console.log("Logo error (CORS/Missing). Proceeding without logo.");
         }
 
-        // Anjakkan teks ke bawah sedikit sebab ada logo
         let startY = 40; 
 
         // Data Extraction
-        const refNo = `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`;
+        const refNoVal = document.getElementById('refNoInput').value.trim();
+        // LOGIC RUANG: Jika kosong, bagi ruang besar (15 space), jika ada isi, guna isi.
+        const refNoDisplay = refNoVal ? refNoVal : "           "; 
+        const refNoFull = `SKCRTG.300-3/1/1 (${refNoDisplay})`;
+        
         const date = formatDate(document.getElementById('dateInput').value);
         const fromCat = document.getElementById('fromDropdown').value;
         const year = document.getElementById('yearDropdown').value;
@@ -299,6 +345,7 @@ SK Cherating,
         const applicantName = document.getElementById('applicantName').value;
         const applicantPos = document.getElementById('applicantPosition').value;
         const approvalDate = formatDate(document.getElementById('approvalDate').value);
+        const grandTotal = document.getElementById('grandTotal').value;
 
         // Header Text
         doc.setFontSize(14);
@@ -308,7 +355,7 @@ SK Cherating,
         doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
         
-        doc.text(`No Ruj: ${refNo}`, 120, startY);
+        doc.text(`No Ruj: ${refNoFull}`, 120, startY);
         doc.text(`Tarikh: ${date}`, 120, startY + 5);
 
         doc.setFont("helvetica", "bold");
@@ -344,18 +391,34 @@ SK Cherating,
             ]);
         }
 
+        // Add Grand Total Row to PDF Table
+        tableRows.push([
+            { content: 'JUMLAH KESELURUHAN (RM):', colSpan: 4, styles: { halign: 'right', fontStyle: 'bold' } },
+            { content: grandTotal, styles: { fontStyle: 'bold' } },
+            { content: '', colSpan: 2 }
+        ]);
+
         doc.autoTable({
             startY: startY + 55,
             head: [['BIL', 'PERIHAL BARANG', 'KUANTITI', 'HARGA / UNIT', 'ANGGARAN HARGA', 'TARIKH DIPERLUKAN', 'CATATAN OLEH GURU BESAR']],
             body: tableRows,
             theme: 'grid',
             styles: { fontSize: 8, cellPadding: 2 },
-            headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' }
+            headStyles: { fillColor: [220, 220, 220], textColor: 0, fontStyle: 'bold' },
+            columnStyles: {
+                4: { halign: 'right' } // Align Harga column to right
+            }
         });
 
         let finalY = doc.lastAutoTable.finalY + 10;
 
-        // Footer
+        // Ensure we don't write off page
+        if (finalY > 240) {
+            doc.addPage();
+            finalY = 20;
+        }
+
+        // Footer Info
         doc.text(`Peruntukan: ${allocation}`, 14, finalY);
         doc.text(`Subsidiari/Mata Pelajaran Semasa: ${subsidiary}`, 14, finalY + 5);
         doc.text(`Baki Peruntukan Semasa: RM ${balance}`, 14, finalY + 10);
@@ -387,19 +450,22 @@ SK Cherating,
         const refY = signY + 30;
         doc.setFontSize(8);
         doc.text("*No Ruj Nota Minta:", 14, refY);
-        doc.text("SKCRTG.300-3/1/1 (        ) - Perolehan Alat Tulis dan Bekalan Pejabat", 14, refY + 5);
-        doc.text("SKCRTG.300-3/1/2 (        ) - Perolehan Bahan Mentah (Makanan)", 14, refY + 10);
-        doc.text("SKCRTG.300-2/1/1 (        ) - Perolehan Harta Modal dan Aset Bernilai Rendah", 14, refY + 15);
+        doc.text("SKCRTG.300-3/1/1 (           ) - Perolehan Alat Tulis dan Bekalan Pejabat", 14, refY + 5);
+        doc.text("SKCRTG.300-3/1/2 (           ) - Perolehan Bahan Mentah (Makanan)", 14, refY + 10);
+        doc.text("SKCRTG.300-2/1/1 (           ) - Perolehan Harta Modal dan Aset Bernilai Rendah", 14, refY + 15);
 
-        doc.save(`Nota_Minta_${document.getElementById('refNoInput').value}.pdf`);
+        doc.save(`Nota_Minta_${refNoVal || 'Kosong'}.pdf`);
     }
 
     function generateExcel() {
         const wb = XLSX.utils.book_new();
         const ws_data = [];
 
+        const refNoVal = document.getElementById('refNoInput').value;
+        const refNoFull = `SKCRTG.300-3/1/1 (${refNoVal ? refNoVal : "           "})`;
+
         ws_data.push(["NOTA MINTA SK CHERATING"]);
-        ws_data.push(["", "", "No Ruj:", `SKCRTG.300-3/1/1 (${document.getElementById('refNoInput').value})`]);
+        ws_data.push(["", "", "No Ruj:", refNoFull]);
         ws_data.push(["", "", "Tarikh:", formatDate(document.getElementById('dateInput').value)]);
         ws_data.push(["KEPADA", ": GURU BESAR"]);
         ws_data.push(["", "SK CHERATING, 26080, KUANTAN PAHANG"]);
@@ -428,6 +494,7 @@ SK Cherating,
             ]);
         }
 
+        ws_data.push(["", "", "", "JUMLAH KESELURUHAN:", document.getElementById('grandTotal').value, "", ""]);
         ws_data.push([]);
         ws_data.push(["Peruntukan:", document.getElementById('allocationInput').value]);
         ws_data.push(["Subsidiari/Mata Pelajaran Semasa:", document.getElementById('subsidiaryInput').value]);
